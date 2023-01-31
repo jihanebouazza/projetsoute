@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briqueterie Slaoui</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <script src="/public/js/scripts.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  </head>
+  <body> 
+    <section id="header">
+      <a href="#">
+        <img src="/public/img/logo.png" class="logo">
+      </a>
+      <div>
+        <ul id="navbar">
+          <li>
+            <a href="index.ejs">Accueil</a>
+          </li>
+          <li>
+            <a href="shop.ejs">Produits</a>
+          </li>
+          <li>
+            <a href="about.ejs">A propos</a>
+          </li>
+          <li>
+            <a class="active" href="cart.ejs">Panier</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="cartt" class="section-p1">
+      <div id="payment">
+        <h2>Facture</h2>
+        <% result.forEach(function(item) { %>
+        <div class="clienttt">
+          <h4>Facturé à</h4>
+          <p class="prenom"><strong>Nom et prénom: </strong><%= item.name %></p>
+          <p class="prenom"><%= item.prenom %></p>
+          <p><strong>Email: </strong><%= item.email %></p>
+          <p><strong>Adresse: </strong><%= item.city %>, <%= item.address %></p>
+          <p><strong>Tel: </strong><%= item.phone %></p>
+        </div>
+        <% }) %>
+        <% facture.forEach(function(item) { %>
+          <div class="clienttt1">
+            <p><strong> Facture N°: </strong><%= item.id_facture %></p>
+            <p><strong> Commande N°: </strong><%= item.id_commande%></p>
+          </div>
+          <% }) %>
+        <section id="cartt" class="section-p1">
+          <table width="100%">
+            <thead>
+              <tr>
+                <td>Produit</td> 
+                <td>Prix Unitaire</td>
+                <td>Quantité</td>
+                <td>Montant</td>
+              </tr>
+            </thead>
+            <tbody class="cartt-content">
+              <% cart.forEach(function(item) { %>
+              <tr> 
+                <td><%= item.name %></td>
+                <td><%= item.price %>dh</td>
+                <td><%= item.quantity %></td>
+                <td><%= tofixed(item.price*item.quantity , 2) %>dh</td>
+              </tr>            
+            </tbody>
+            <% }) %>
+          </table>
+        </section>
+        <section id="cart-add" class="sectio-p1">
+          <div id="total">
+            <table>
+              <tr>
+                <td><strong>Total</strong></td>
+                <td><strong><%= tofixed(total, 2) %>dh</strong></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- <form action="/install" method="get">
+        <input type="submit" class="download" value="Telecharger"> 
+      </form> -->
+     </section>
+    <footer class="section-p1">
+      <div class="col">
+        <img class="logo" src="/public/img/logo-white-12.png">
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><strong>Adresse:</strong> Route De Meknes – Oulja, Salé B.P 260 Rabat</p>
+        <p><strong>Service client:</strong> +212 660 048 825 / +212 663 555 990</p>
+        <p><strong>Email:</strong> contact@briqueterieslaoui.ma</p>
+      </div>
+    </footer>
+  </body>
+</html>
